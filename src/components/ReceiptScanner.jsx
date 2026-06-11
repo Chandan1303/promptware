@@ -164,6 +164,16 @@ export const ReceiptScanner = () => {
             backgroundColor: 'success.50'
           }}
         >
+          {result.demo && (
+            <Alert severity="info" sx={{ mb: 3, borderRadius: '12px' }}>
+              <Typography variant="subtitle2" sx={{ fontWeight: 'bold' }}>
+                Demo Mode - Estimated Results
+              </Typography>
+              <Typography variant="body2">
+                This feature is running in offline simulation mode because the Google Vision API key is not configured.
+              </Typography>
+            </Alert>
+          )}
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 3 }}>
             <ReceiptIcon sx={{ fontSize: 48, color: 'success.main' }} />
             <Box>

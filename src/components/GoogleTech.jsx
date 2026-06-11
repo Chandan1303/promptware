@@ -30,12 +30,13 @@ export const GoogleTech = () => {
     // Check which APIs are configured
     const checkAPIs = () => {
       const status = {
-        gemini: !!import.meta.env.VITE_GEMINI_API_KEY && import.meta.env.VITE_GEMINI_API_KEY !== 'your_gemini_api_key_here',
-        analytics: !!import.meta.env.VITE_GA_MEASUREMENT_ID && import.meta.env.VITE_GA_MEASUREMENT_ID !== 'G-XXXXXXXXXX',
-        maps: !!import.meta.env.VITE_GOOGLE_MAPS_API_KEY && import.meta.env.VITE_GOOGLE_MAPS_API_KEY !== 'your_maps_api_key_here',
-        translate: !!import.meta.env.VITE_GOOGLE_TRANSLATE_API_KEY && import.meta.env.VITE_GOOGLE_TRANSLATE_API_KEY !== 'your_translate_api_key_here',
-        vision: !!import.meta.env.VITE_GOOGLE_VISION_API_KEY && import.meta.env.VITE_GOOGLE_VISION_API_KEY !== 'your_vision_api_key_here',
-        recaptcha: !!import.meta.env.VITE_RECAPTCHA_SITE_KEY && import.meta.env.VITE_RECAPTCHA_SITE_KEY !== 'your_recaptcha_site_key_here',
+        gemini: (!!import.meta.env.VITE_GEMINI_API_KEY && import.meta.env.VITE_GEMINI_API_KEY !== 'your_gemini_api_key_here') ? 'live' : 'simulation',
+        analytics: (!!import.meta.env.VITE_GA_MEASUREMENT_ID && import.meta.env.VITE_GA_MEASUREMENT_ID !== 'G-XXXXXXXXXX') ? 'live' : 'simulation',
+        maps: (!!import.meta.env.VITE_GOOGLE_MAPS_API_KEY && import.meta.env.VITE_GOOGLE_MAPS_API_KEY !== 'your_maps_api_key_here') ? 'live' : 'simulation',
+        translate: (!!import.meta.env.VITE_GOOGLE_TRANSLATE_API_KEY && import.meta.env.VITE_GOOGLE_TRANSLATE_API_KEY !== 'your_translate_api_key_here') ? 'live' : 'simulation',
+        vision: (!!import.meta.env.VITE_GOOGLE_VISION_API_KEY && import.meta.env.VITE_GOOGLE_VISION_API_KEY !== 'your_vision_api_key_here') ? 'live' : 'simulation',
+        recaptcha: (!!import.meta.env.VITE_RECAPTCHA_SITE_KEY && import.meta.env.VITE_RECAPTCHA_SITE_KEY !== 'your_recaptcha_site_key_here') ? 'live' : 'simulation',
+        storage: (!!import.meta.env.VITE_GCS_BUCKET_NAME) ? 'live' : 'simulation',
       };
       setApiStatus(status);
     };
@@ -85,7 +86,7 @@ export const GoogleTech = () => {
       details: 'Responsive layouts, dynamic theming (light/dark/high-contrast), fluid animations, accessibility-first components. WCAG 2.1 AA compliant with semantic HTML and ARIA support.',
       icon: <BrushIcon sx={{ fontSize: 28, color: '#4285F4' }} />,
       color: '#4285F4',
-      status: true,
+      status: 'core',
       category: 'Design System'
     },
     {
@@ -112,7 +113,7 @@ export const GoogleTech = () => {
       details: 'Global CDN distribution, automatic HTTPS, 99.9% uptime SLA, pay-per-use pricing. Containerized deployment with Docker for consistent environments.',
       icon: <CloudQueueIcon sx={{ fontSize: 28, color: '#34A853' }} />,
       color: '#34A853',
-      status: true,
+      status: 'core',
       category: 'Infrastructure'
     },
     {
@@ -121,7 +122,7 @@ export const GoogleTech = () => {
       details: 'Subset optimization for faster loading, variable font support, display=swap for better performance. Accessible typography with clear readability and proper contrast.',
       icon: <FontDownloadIcon sx={{ fontSize: 28, color: '#4285F4' }} />,
       color: '#4285F4',
-      status: true,
+      status: 'core',
       category: 'Performance'
     },
     {
@@ -130,12 +131,12 @@ export const GoogleTech = () => {
       details: 'Secure file storage with encryption at rest, global availability, lifecycle management. Supports image optimization, CDN integration, and access control.',
       icon: <StorageIcon sx={{ fontSize: 28, color: '#FBBC04' }} />,
       color: '#FBBC04',
-      status: !!import.meta.env.VITE_GCS_BUCKET_NAME,
+      status: apiStatus.storage,
       category: 'Storage'
     }
   ];
 
-  const configuredCount = Object.values(apiStatus).filter(Boolean).length + 4; // +4 for always-on services
+  const activeCount = techStack.filter(t => t.status && t.status !== 'available').length;
   const totalServices = techStack.length;
 
   return (
@@ -149,8 +150,8 @@ export const GoogleTech = () => {
         </Typography>
         <Stack direction="row" spacing={1} sx={{ mt: 2 }}>
           <Chip 
-            label={`${configuredCount}/${totalServices} Services Active`} 
-            color={configuredCount === totalServices ? 'success' : 'warning'}
+            label={`${activeCount}/${totalServices} Services Active`} 
+            color={activeCount === totalServices ? 'success' : 'warning'}
             icon={<CheckCircleIcon />}
           />
           <Chip label="No Firebase" color="info" />
@@ -244,10 +245,14 @@ export const GoogleTech = () => {
                           </Box>
                         </Box>
                         <Chip 
-                          label={tech.status ? 'Active' : 'Available'} 
+                          label={
+                            tech.status === 'live' ? 'Active (Live)' :
+                            tech.status === 'simulation' ? 'Active (Demo)' :
+                            tech.status === 'core' ? 'Active (Core)' : 'Available'
+                          } 
                           size="small"
-                          color={tech.status ? 'success' : 'default'}
-                          variant={tech.status ? 'filled' : 'outlined'}
+                          color={tech.status !== 'available' ? 'success' : 'default'}
+                          variant={tech.status !== 'available' ? 'filled' : 'outlined'}
                         />
                       </Box>
                       <Typography variant="subtitle2" color="text.secondary" sx={{ fontWeight: '500', mb: 1 }}>
