@@ -7,6 +7,8 @@
 
 > **Tagline:** Your Personal AI Sustainability Coach
 
+🔗 **Live Demo:** [https://ecoguide-ai-452379748716.us-central1.run.app](https://ecoguide-ai-452379748716.us-central1.run.app)
+
 A production-ready, intelligent Carbon Footprint Awareness Platform that helps users understand, analyze, and reduce their environmental impact through AI-powered personalized recommendations.
 
 ---
@@ -683,7 +685,7 @@ MIT License - feel free to use this project for learning and hackathons.
 
 - **GitHub Issues:** [Report bugs](https://github.com/your-username/ecoguide-ai/issues)
 - **Documentation:** This README
-- **Demo:** [Live Demo Link](https://your-demo-url.com)
+- **Demo:** [Live Demo Link](https://ecoguide-ai-452379748716.us-central1.run.app)
 
 ---
 
