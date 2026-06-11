@@ -1,0 +1,54 @@
+# Google Cloud Build configuration for automated deployment
+# This file enables CI/CD pipeline for the application
+
+steps:
+  # Step 1: Build the Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [
+      'build',
+      '-t', 'gcr.io/$PROJECT_ID/ecoguide-ai:$COMMIT_SHA',
+      '-t', 'gcr.io/$PROJECT_ID/ecoguide-ai:latest',
+      '.'
+    ]
+
+  # Step 2: Push the Docker image to Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/ecoguide-ai:$COMMIT_SHA']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/ecoguide-ai:latest']
+
+  # Step 3: Deploy to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'ecoguide-ai'
+      - '--image=gcr.io/$PROJECT_ID/ecoguide-ai:$COMMIT_SHA'
+      - '--region=us-central1'
+      - '--platform=managed'
+      - '--allow-unauthenticated'
+      - '--memory=512Mi'
+      - '--cpu=1'
+      - '--max-instances=10'
+      - '--set-env-vars=VITE_GEMINI_API_KEY=${_GEMINI_API_KEY}'
+      - '--set-env-vars=VITE_GA_MEASUREMENT_ID=${_GA_MEASUREMENT_ID}'
+
+# Store images in Container Registry
+images:
+  - 'gcr.io/$PROJECT_ID/ecoguide-ai:$COMMIT_SHA'
+  - 'gcr.io/$PROJECT_ID/ecoguide-ai:latest'
+
+# Build options
+options:
+  machineType: 'N1_HIGHCPU_8'
+  logging: CLOUD_LOGGING_ONLY
+
+# Substitutions for environment variables
+# Configure these in Cloud Build Triggers
+substitutions:
+  _GEMINI_API_KEY: 'your-api-key-here'
+  _GA_MEASUREMENT_ID: 'G-XXXXXXXXXX'
+
+timeout: '1200s'
