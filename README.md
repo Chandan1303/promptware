@@ -15,6 +15,7 @@ A production-ready, intelligent Carbon Footprint Awareness Platform that helps u
 
 - [Problem Statement](#-problem-statement)
 - [Solution Overview](#-solution-overview)
+- [Assumptions Made](#-assumptions-made)
 - [Key Features](#-key-features)
 - [Technology Stack](#-technology-stack)
 - [Google Services Integration](#-google-services-integration)
@@ -59,6 +60,15 @@ EcoGuide AI is an intelligent web application that acts as a personal sustainabi
 - **No Backend Required:** Fully client-side architecture
 - **Accessible:** WCAG 2.1 AA compliant with extensive accessibility features
 - **Google-Powered:** Leverages Google Gemini AI and Material Design 3
+
+---
+
+## 📝 Assumptions Made
+
+1. **Carbon Calculation Co-efficients**: The carbon footprint calculation uses standardized metrics (e.g., 0.2 kg CO2 per km for average gasoline cars, standard consumption averages for household utilities). Actual emissions may vary by vehicle efficiency and local utility grid resource mix.
+2. **Local Storage Lifetime**: Since no backend is used, it is assumed that the user's data remains persisted in their browser's LocalStorage. Clearing browser cache/cookies will reset the user's profile and progress.
+3. **API Key Fallback**: The system assumes the presence of a Gemini API key. If the key is not provided (locally or via environment variables), the app runs in an offline simulation mode with predefined data-driven patterns.
+4. **Google Translate Usage**: Translating dynamic text assumes access to the Google Cloud Translation API. When not available, the application defaults back to English without throwing breaking errors.
 
 ---
 
