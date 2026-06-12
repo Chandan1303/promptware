@@ -10,7 +10,7 @@ You need **6 API keys** total. Follow these steps for each service.
 **Status:** ✅ Already have it!
 
 ```env
-VITE_GEMINI_API_KEY=AIzaSyB-pJuo4X7CUmTC4_YC7YPeRzfj3poOsw0
+VITE_GEMINI_API_KEY=AIzaSyDummyGeminiKeyForDemoPurposesOnly1234
 ```
 
 ---
@@ -258,7 +258,7 @@ After getting all keys, your `.env` should look like this:
 # ==================================================
 
 # ===== GOOGLE GEMINI AI API ===== ✅
-VITE_GEMINI_API_KEY=AIzaSyB-pJuo4X7CUmTC4_YC7YPeRzfj3poOsw0
+VITE_GEMINI_API_KEY=AIzaSyDummyGeminiKeyForDemoPurposesOnly1234
 
 # ===== GOOGLE ANALYTICS 4 =====
 VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX

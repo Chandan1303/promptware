@@ -11,7 +11,7 @@ This error means your API key exists but has restrictions that block localhost.
 ### Step 1: Check API Key Settings
 
 1. Go to: **https://console.cloud.google.com/apis/credentials**
-2. Find your key: `AIzaSyDln_279CvlYrmToNv8bMvxVj_FrOodIJAs`
+2. Find your key: `AIzaSyDummyMapsKeyForDemoPurposesOnly5678`
 3. Click on it
 
 ### Step 2: Check "Application Restrictions"
@@ -167,7 +167,7 @@ Look for one of these errors:
 
 Open in browser:
 ```
-https://maps.googleapis.com/maps/api/js?key=AIzaSyDln_279CvlYrmToNv8bMvxVj_FrOodIJAs&libraries=places
+https://maps.googleapis.com/maps/api/js?key=AIzaSyDummyMapsKeyForDemoPurposesOnly5678&libraries=places
 ```
 
 **Expected result:**
@@ -182,7 +182,7 @@ https://maps.googleapis.com/maps/api/js?key=AIzaSyDln_279CvlYrmToNv8bMvxVj_FrOod
 
 ## ✅ Current Configuration Check
 
-Your key: `AIzaSyDln_279CvlYrmToNv8bMvxVj_FrOodIJAs`
+Your key: `AIzaSyDummyMapsKeyForDemoPurposesOnly5678`
 
 **To verify settings:**
 

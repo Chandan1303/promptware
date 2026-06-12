@@ -25,7 +25,6 @@ import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
 import FlashOnIcon from '@mui/icons-material/FlashOn';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
-import DeleteIcon from '@mui/icons-material/Delete';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -83,7 +82,7 @@ export const CarbonAnalyzer = () => {
       <Typography variant="h4" component="h1" gutterBottom sx={{ fontWeight: 'bold' }}>
         Smart Carbon Analyzer
       </Typography>
-      <Typography variant="body1" color="text.secondary" paragraph>
+      <Typography variant="body1" color="text.secondary" gutterBottom>
         Answer these lifestyle questions to calculate your daily, monthly, and annual greenhouse gas emissions.
       </Typography>
 
@@ -186,8 +185,8 @@ export const CarbonAnalyzer = () => {
                   <FormLabel id="transport-km-label" sx={{ fontWeight: 'bold', display: 'block', mb: 2, color: 'text.primary' }}>
                     Average Daily Distance
                   </FormLabel>
-                  <Grid container spacing={3} alignItems="center">
-                    <Grid xs>
+                  <Grid container spacing={3} sx={{ alignItems: 'center' }}>
+                    <Grid sx={{ flexGrow: 1 }}>
                       <Slider
                         value={formData.transportKm}
                         min={0}
@@ -204,13 +203,15 @@ export const CarbonAnalyzer = () => {
                         label="Daily km"
                         value={formData.transportKm}
                         onChange={(e) => handleInputChange('transportKm', parseInt(e.target.value) || 0)}
-                        inputProps={{
-                          min: 0,
-                          max: 1000,
-                          'aria-label': 'Daily transit distance in kilometers'
-                        }}
-                        InputProps={{
-                          endAdornment: <InputAdornment position="end">km</InputAdornment>,
+                        slotProps={{
+                          htmlInput: {
+                            min: 0,
+                            max: 1000,
+                            'aria-label': 'Daily transit distance in kilometers'
+                          },
+                          input: {
+                            endAdornment: <InputAdornment position="end">km</InputAdornment>
+                          }
                         }}
                         fullWidth
                         size="small"

@@ -35,8 +35,8 @@ export const GoogleTech = () => {
         maps: (!!import.meta.env.VITE_GOOGLE_MAPS_API_KEY && import.meta.env.VITE_GOOGLE_MAPS_API_KEY !== 'your_maps_api_key_here') ? 'live' : 'simulation',
         translate: (!!import.meta.env.VITE_GOOGLE_TRANSLATE_API_KEY && import.meta.env.VITE_GOOGLE_TRANSLATE_API_KEY !== 'your_translate_api_key_here') ? 'live' : 'simulation',
         vision: (!!import.meta.env.VITE_GOOGLE_VISION_API_KEY && import.meta.env.VITE_GOOGLE_VISION_API_KEY !== 'your_vision_api_key_here') ? 'live' : 'simulation',
-        recaptcha: (!!import.meta.env.VITE_RECAPTCHA_SITE_KEY && import.meta.env.VITE_RECAPTCHA_SITE_KEY !== 'your_recaptcha_site_key_here') ? 'live' : 'simulation',
-        storage: (!!import.meta.env.VITE_GCS_BUCKET_NAME) ? 'live' : 'simulation',
+        recaptcha: (import.meta.env.VITE_RECAPTCHA_SITE_KEY && import.meta.env.VITE_RECAPTCHA_SITE_KEY !== 'your_recaptcha_site_key_here') ? 'live' : 'simulation',
+        storage: (import.meta.env.VITE_GCS_BUCKET_NAME) ? 'live' : 'simulation',
       };
       setApiStatus(status);
     };

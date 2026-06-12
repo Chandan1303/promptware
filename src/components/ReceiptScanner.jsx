@@ -55,7 +55,7 @@ export const ReceiptScanner = () => {
       } else {
         setResult(data);
       }
-    } catch (err) {
+    } catch {
       setError('Failed to analyze receipt. Please try again.');
     } finally {
       setLoading(false);

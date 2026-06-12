@@ -15,7 +15,7 @@ import './App.css';
 
 function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
-  const [themeMode, setThemeMode] = useState(() => {
+  const [themeMode, _setThemeMode] = useState(() => {
     const saved = localStorage.getItem('eco_theme_mode');
     return saved || 'dark';
   });

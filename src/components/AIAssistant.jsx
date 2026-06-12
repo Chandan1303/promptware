@@ -6,7 +6,6 @@ import {
   CardContent,
   TextField,
   Button,
-  IconButton,
   List,
   ListItem,
   Avatar,
@@ -76,7 +75,7 @@ export const AIAssistant = () => {
         timestamp: new Date().toLocaleTimeString()
       };
       setMessages((prev) => [...prev, assistantMsg]);
-    } catch (error) {
+    } catch {
       const errorMsg = {
         id: (Date.now() + 1).toString(),
         sender: 'assistant',
@@ -148,7 +147,9 @@ export const AIAssistant = () => {
                 value={keyInput}
                 onChange={(e) => setKeyInput(e.target.value)}
                 fullWidth
-                inputProps={{ 'aria-label': 'Enter your Gemini API key' }}
+                slotProps={{
+                  htmlInput: { 'aria-label': 'Enter your Gemini API key' }
+                }}
                 sx={{ '& .MuiOutlinedInput-root': { borderRadius: '10px' } }}
               />
               <Button
@@ -319,7 +320,9 @@ export const AIAssistant = () => {
             onChange={(e) => setInputValue(e.target.value)}
             disabled={isLoading}
             size="medium"
-            inputProps={{ 'aria-label': 'Chat Input message field' }}
+            slotProps={{
+              htmlInput: { 'aria-label': 'Chat Input message field' }
+            }}
             sx={{ '& .MuiOutlinedInput-root': { borderRadius: '12px' } }}
           />
           <Button

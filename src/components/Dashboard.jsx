@@ -16,9 +16,9 @@ import {
   IconButton,
   Button,
   LinearProgress,
-  Paper,
   Chip,
-  Alert
+  Alert,
+  Avatar
 } from '@mui/material';
 import {
   PieChart,
@@ -120,6 +120,24 @@ export const Dashboard = () => {
           }}
         />
       </Box>
+
+      {/* Target Persona Focus Card */}
+      <Card sx={{ mb: 4, borderRadius: '16px', border: '1px solid', borderColor: 'divider', transition: 'none !important', '&:hover': { transform: 'none !important', boxShadow: 'none !important' } }}>
+        <CardContent sx={{ p: 3, display: 'flex', alignItems: 'center', gap: 2.5 }}>
+          <Avatar sx={{ bgcolor: 'rgba(0, 191, 165, 0.15)', color: 'primary.main', width: 56, height: 56 }}>
+            <ForestIcon sx={{ fontSize: '32px' }} />
+          </Avatar>
+          <Box sx={{ flexGrow: 1 }}>
+            <Typography variant="subtitle1" sx={{ fontWeight: 'bold', mb: 0.5 }}>
+              Active Profile Alignment: Eco-Conscious Emma
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Tailored environmental sustainability assistance for busy professionals (age 28-45) prioritizing household efficiency, transit alternatives, and optimized recycling.
+            </Typography>
+          </Box>
+          <Chip label="Persona Active" color="primary" variant="outlined" sx={{ fontWeight: 'bold' }} />
+        </CardContent>
+      </Card>
 
       {showAccessibilityGuides && (
         <Alert severity="info" sx={{ mb: 4 }} aria-live="polite">
@@ -338,7 +356,9 @@ export const Dashboard = () => {
                   onChange={(e) => setNewGoalText(e.target.value)}
                   size="small"
                   fullWidth
-                  inputProps={{ 'aria-label': 'Create a new sustainability goal' }}
+                  slotProps={{
+                    htmlInput: { 'aria-label': 'Create a new sustainability goal' }
+                  }}
                   sx={{ '& .MuiOutlinedInput-root': { borderRadius: '10px' } }}
                 />
                 <Button
@@ -396,7 +416,7 @@ export const Dashboard = () => {
                             checked={goal.completed}
                             tabIndex={-1}
                             disableRipple
-                            inputProps={{ 'aria-labelledby': `goal-text-${goal.id}` }}
+                            aria-labelledby={`goal-text-${goal.id}`}
                           />
                         </ListItemIcon>
                         <ListItemText

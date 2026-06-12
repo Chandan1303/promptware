@@ -38,8 +38,10 @@ You are EcoGuide AI, an elite carbon footprint analyst and supportive sustainabi
 Here is the current carbon footprint and lifestyle breakdown of the user:
 ${profileContext}
 
+Our target user profile is Eco-Conscious Emma (a busy 28-45 professional seeking to reduce personal and household emissions).
+
 Instructions:
-1. Provide personalized, highly actionable advice.
+1. Provide personalized, highly actionable advice tailored for busy professionals like Emma.
 2. Directly answer the user's message using their profile data.
 3. Be encouraging and professional. Do not use generic carbon footprint boilerplate.
 4. Format all responses in clean Markdown (bold text, lists, table structures if needed).
@@ -91,11 +93,11 @@ function simulateGeminiResponse(message, answers, breakdown) {
   let reply = '';
 
   if (query.includes('why') && (query.includes('high') || query.includes('footprint') || query.includes('score'))) {
-    reply = `### Understanding Your Carbon Footprint
+    reply = `### Understanding Your Carbon Footprint (Eco-Conscious Emma Profile)
 
 Your annual carbon footprint is **${breakdown.total.toLocaleString()} kg CO2/year**. 
 
-The main contributor to your score is **${highest.name}** at **${highest.value.toLocaleString()} kg CO2/year**. This is primarily driven by your choice of a **${answers.transportType}** for daily transport (${answers.transportKm} km/day) and your **${answers.diet}** diet.
+As your coach evaluating your profile through the lens of a busy professional, the main contributor to your score is **${highest.name}** at **${highest.value.toLocaleString()} kg CO2/year**. This is primarily driven by your choice of a **${answers.transportType}** for daily transport (${answers.transportKm} km/day) and your **${answers.diet}** diet.
 
 Here are the key areas pushing your footprint up:
 1. **${highest.name}** (${highest.value.toLocaleString()} kg CO2/year): High carbon output relative to sustainable standards.
@@ -107,9 +109,9 @@ To make an immediate impact, I recommend focusing on **${highest.name}** by ${hi
   
   else if (query.includes('improve') || query.includes('reduce') || query.includes('next month') || query.includes('what should i do')) {
     const savings = Math.round(breakdown.total * 0.15);
-    reply = `### Your Customized Footprint Reduction Blueprint
+    reply = `### Your Customized Footprint Reduction Blueprint (Eco-Conscious Emma Profile)
 
-Based on your lifestyle questionnaire, we can target a **15% reduction next month** (saving approximately **${savings} kg CO2/year**). Here are your priority action steps:
+Based on the busy professional lifestyle profile, we can target a **15% reduction next month** (saving approximately **${savings} kg CO2/year**). Here are your priority action steps:
 
 1. **Optimize Your Commute (Save ~${Math.round(breakdown.transport * 0.25)} kg/yr):**
    Since you travel by *${answers.transportType}* for *${answers.transportKm} km* daily, swapping to walking, cycling, or transit just 2 days a week will cut your transport footprint significantly.
@@ -124,7 +126,7 @@ Based on your lifestyle questionnaire, we can target a **15% reduction next mont
   }
   
   else if (query.includes('contributor') || query.includes('biggest') || query.includes('highest')) {
-    reply = `### Primary Carbon Emission Contributor
+    reply = `### Primary Carbon Emission Contributor (Eco-Conscious Emma Profile)
 
 Your biggest source of carbon emissions is **${highest.name}**, which accounts for **${highest.value.toLocaleString()} kg CO2/year** (approximately **${Math.round((highest.value / breakdown.total) * 100)}%** of your total footprint).
 
@@ -139,7 +141,7 @@ By contrast, your lowest contributor is **${lowest.name}** at **${lowest.value.t
   else {
     reply = `### Hello! I am your AI Sustainability Coach.
 
-I have analyzed your lifestyle data:
+I have analyzed your lifestyle data for the **Eco-Conscious Emma** target persona:
 - **Annual Emissions:** ${breakdown.total.toLocaleString()} kg CO2/year
 - **Primary Source:** ${highest.name} (${highest.value.toLocaleString()} kg)
 - **Sustainability Rank:** ${answers.diet === 'vegan' && answers.transportType === 'bike' ? 'Eco Hero' : 'Active Improver'}

@@ -138,7 +138,7 @@ export const ActionEngine = () => {
 
       <Card sx={{ mb: 4, borderRadius: '12px', border: '1px solid', borderColor: 'divider' }}>
         <CardContent sx={{ p: 2, '&:last-child': { pb: 2 } }}>
-          <Grid container spacing={2} alignItems="center">
+          <Grid container spacing={2} sx={{ alignItems: 'center' }}>
             <Grid xs={12} sm={4}>
               <FormControl fullWidth size="small">
                 <InputLabel id="filter-category-label">Category</InputLabel>
@@ -182,7 +182,9 @@ export const ActionEngine = () => {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 size="small"
                 fullWidth
-                inputProps={{ 'aria-label': 'Search recommended actions' }}
+                slotProps={{
+                  htmlInput: { 'aria-label': 'Search recommended actions' }
+                }}
               />
             </Grid>
           </Grid>
@@ -219,7 +221,7 @@ export const ActionEngine = () => {
                         <Checkbox
                           checked={action.completed}
                           onChange={() => toggleAction(action.id)}
-                          inputProps={{ 'aria-label': `Commit to: ${action.title}` }}
+                          aria-label={`Commit to: ${action.title}`}
                         />
                       }
                       label={
@@ -261,7 +263,7 @@ export const ActionEngine = () => {
                     <Chip
                       label={`Difficulty: ${action.difficulty}`}
                       color={getDifficultyColor(action.difficulty)}
-                      size="small;;"
+                      size="small"
                       sx={{ textTransform: 'capitalize', fontWeight: '500' }}
                     />
                     <Chip

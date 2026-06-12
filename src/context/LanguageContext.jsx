@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import { translateText } from '../services/googleTranslate';
 import { UI_CONSTANTS, STORAGE_KEYS } from '../constants';
 import { isValidLanguageCode } from '../utils/validators';
@@ -35,7 +35,7 @@ export const LanguageProvider = ({ children }) => {
   });
 
   const [translations, setTranslations] = useState({});
-  const [isTranslating, setIsTranslating] = useState(false);
+  const [isTranslating, _setIsTranslating] = useState(false);
 
   /**
    * Changes the current language

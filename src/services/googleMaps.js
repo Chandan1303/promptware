@@ -178,7 +178,7 @@ export async function getPlaceAutocomplete(input) {
   try {
     const autocompleteService = new google.maps.places.AutocompleteService();
     
-    const predictions = await new Promise((resolve, reject) => {
+    const predictions = await new Promise((resolve, _reject) => {
       autocompleteService.getPlacePredictions(
         { input: input },
         (predictions, status) => {
