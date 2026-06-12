@@ -1,0 +1,28 @@
+# This file was created to control which files are uploaded to Google Cloud Build.
+# We explicitly include the .env file (by prefixing it with !) so that the build-time
+# environment variables (like API keys) are bundled into our production static build.
+
+# Ignore build artifacts and dependencies
+node_modules/
+dist/
+dist-ssr/
+build/
+coverage/
+.nyc_output/
+
+# Ignore git metadata
+.git/
+.gitignore
+
+# Ignore editor and OS files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+
+# Explicitly include the production .env file
+!.env
